@@ -1,0 +1,127 @@
+/* reset & typography */
+body {
+  background-color: #f7f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* header */
+.header {
+  background: #fff;
+  border-bottom: 2px solid #f2a7c1;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .logo {
+  font-size: 1.5rem;
+  color: #e91e63;
+  font-weight: bold;
+  text-decoration: none;
+}
+.header .nav a {
+  margin-left: 1rem;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+}
+.header .phone {
+  color: #e91e63;
+  font-weight: bold;
+}
+
+/* hero + form card */
+.hero {
+  background: url('https://i.ibb.co/0VCq2XG/banner.jpg') center/cover no-repeat;
+  padding: 4rem 0;
+}
+.form-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+.form-card h2 {
+  color: #e91e63;
+  margin-bottom: 1rem;
+}
+
+/* button styles */
+.btn-primary {
+  background: #e91e63;
+  border: none;
+  border-radius: 30px;
+  padding: 0.75rem 1.5rem;
+}
+.btn-primary:hover {
+  background: #d81b60;
+}
+.btn-secondary {
+  background: #fff;
+  color: #e91e63;
+  border: 2px solid #e91e63;
+  border-radius: 30px;
+}
+.btn-secondary:hover {
+  background: #e91e63;
+  color: #fff;
+}
+
+/* steps */
+.steps {
+  text-align: center;
+  padding: 3rem 0;
+}
+.steps h3 {
+  color: #e91e63;
+  margin-bottom: 1.5rem;
+}
+.steps .step {
+  display: inline-block;
+  width: 120px;
+  margin: 0 1rem;
+}
+.steps .step .circle {
+  background: #fff;
+  border: 3px solid #e91e63;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  line-height: 54px;
+  color: #e91e63;
+  font-weight: bold;
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+/* about */
+.about {
+  background: #fff;
+  padding: 3rem 2rem;
+}
+.about h3 {
+  color: #e91e63;
+  margin-bottom: 1rem;
+}
+.about p {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* footer */
+.footer {
+  background: #e91e63;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+.footer a {
+  color: #ffcdd2;
+  text-decoration: none;
+}

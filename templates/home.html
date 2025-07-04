@@ -1,17 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Breast Cancer AI</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer AI - Home</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Base Styles */
+    body { font-family: 'Poppins', sans-serif; background: #f8f4f8; color: #333; }
+    :root { --pink: #e91e63; --pink-light: #fce4ec; --pink-dark: #c2185b; }
+    a { text-decoration: none; }
+    .btn-pink { background: var(--pink); color: #fff; border-radius: 50px; padding: .75rem 1.75rem; transition: .3s; }
+    .btn-pink:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .text-pink { color: var(--pink); }
+
+    /* Navbar */
+    .navbar { padding: 1rem 0; }
+    .navbar-brand img { height: 50px; }
+
+    /* Hero */
+    .hero { position: relative; background: url('{{ url_for('static', filename='images/9586144.jpg') }}') center/cover no-repeat; background-size: cover; min-height: 75vh; display: flex; align-items: center; padding: 4rem 0; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+    .hero .content { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; flex-direction: row-reverse; }
+    .hero-text { flex: 1 1 400px; text-align: right; color: #fff; text-shadow: 2px 2px 6px rgba(0,0,0,0.6); }
+    .hero-text h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+    .hero-text p { font-size: 1.25rem; margin-bottom: 1.5rem; }
+    .hero-image { flex: 1 1 400px; }
+    .hero-image img { width: 100%; border-radius: 1rem; box-shadow: 0 8px 20px rgba(0,0,0,0.3); animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+
+    /* How It Works */
+    .steps { padding: 4rem 0; }
+    .steps-card { border: none; border-radius: 1rem; transition: .3s; }
+    .steps-card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .steps-icon { font-size: 2.5rem; color: var(--pink); }
+
+    /* FAQ & Articles */
+    .faq-articles { padding: 4rem 0; }
+    .accordion-item { border: none; margin-bottom: 1rem; border-radius: .5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+    .accordion-button { background: #fff; color: #333; }
+    .accordion-button:not(.collapsed) { background: var(--pink-light); color: var(--pink-dark); }
+    .article-card { border: none; border-radius: .75rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: .3s; }
+    .article-card:hover { transform: translateY(-5px); }
+    .article-card img { object-fit: cover; height: 180px; }
+
+    /* Footer */
+    footer { background: #222; color: #ddd; padding: 4rem 0 2rem; }
+    footer a { color: #ddd; transition: color .3s; }
+    footer a:hover { color: var(--pink); }
+    .footer-logo img { height: 60px; filter: brightness(0) invert(1); }
+    .social-icons a { display: inline-block; width: 40px; height: 40px; line-height: 40px; margin: 0 .25rem; border: 1px solid #444; border-radius: 50%; color: #ddd; transition: background .3s, color .3s; }
+    .social-icons a:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+    .footer-links h5 { color: #fff; margin-bottom: 1rem; }
+    .footer-bottom { border-top: 1px solid #444; margin-top: 2rem; padding-top: 1rem; font-size: .9rem; color: #aaa; }
+  </style>
 </head>
 <body>
-    <div class="container text-center mt-5">
-        <h1>Welcome to Breast Cancer Predictor</h1>
-        <p class="lead">Enter your diagnostic values and get instant AI-powered insights!</p>
-        <a href="/predictdata" class="btn btn-success">Get Started</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/breast-cancer-logo-flyer-design-template-15e7eb8542754cc24e97fe333dc5123f_screen.jpg?ts=1632498400" alt="Logo">
+        <span class="ms-2 h5 mb-0 text-pink">Breast Cancer AI</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/predictdata">Predict</a></li>
+          <li class="nav-item"><a class="nav-link" href="/faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container content">
+      <div class="hero-text" data-aos="fade-right">
+        <h1>Breast Cancer Prediction AI</h1>
+        <p>Quick, accurate AI-powered analysis of your biopsy values.</p>
+        <a href="/predictdata" class="btn-pink">Get Started</a>
+      </div>
+      <div class="hero-image" data-aos="fade-left">
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="steps bg-white text-center" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-pink mb-4">How It Works</h2>
+      <p class="mb-5">Follow these simple steps for your AI-powered breast cancer risk analysis:</p>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card steps-card p-4 h-100"><div class="card-body text-center">
+              <i class="bi bi-pencil-square steps-icon mb-3"></i><h5>Input Your Data</h5>
+              <p>Fill in your biopsy measurements in under a minute.</p>
+            </div></div>
+        </div>
+        <div class="col-md-4">
+          <div class="card steps-card p-4 h-100"><div class="card-body text-center">
+              <i class="bi bi-gear-fill steps-icon mb-3"></i><h5>Model Processing</h5>
+              <p>Our AI processes your inputs with advanced algorithms.</p>
+            </div></div>
+        </div>
+        <div class="col-md-4">
+          <div class="card steps-card p-4 h-100"><div class="card-body text-center">
+              <i class="bi bi-check-circle-fill steps-icon mb-3"></i><h5>Review Results</h5>
+              <p>Receive your risk score and clear next steps instantly.</p>
+            </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ & Latest Articles Section -->
+  <section class="faq-articles" data-aos="fade-up">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-6"><h3 class="text-pink mb-4">Frequently Asked Questions</h3>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item"><h2 class="accordion-header" id="faq1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">What inputs are required?</button></h2>
+              <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"><div class="accordion-body">Enter basic biopsy values like radius, texture, perimeter, area, and smoothness.</div></div>
+            </div>
+            <div class="accordion-item"><h2 class="accordion-header" id="faq2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">Is my data private?</button></h2>
+              <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">All data is processed anonymously and never stored.</div></div>
+            </div>
+            <div class="accordion-item"><h2 class="accordion-header" id="faq3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">How accurate is the prediction?</button></h2>
+              <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Our model exceeds 95% accuracy on benchmark datasets.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6"><h3 class="text-pink mb-4">Latest Articles</h3>
+          <div class="row gy-4">
+            <div class="col-md-6"><div class="card article-card"><img src="{{ url_for('static', filename='images/1.webp') }}" class="card-img-top" alt="Understanding Your Risk Score"><div class="card-body"><h5 class="card-title">Understanding Your Risk Score</h5><p>A breakdown of what your AI-generated score means and next steps.</p><p class="text-muted mb-0">Jul 1, 2025</p></div></div></div>
+            <div class="col-md-6"><div class="card article-card"><img src="{{ url_for('static', filename='images/2.jpg') }}" class="card-img-top" alt="How AI is Changing Oncology"><div class="card-body"><h5 class="card-title">How AI is Changing Oncology</h5><p>Explore how machine learning supports early detection.</p><p class="text-muted mb-0">Jun 20, 2025</p></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4 footer-logo text-center text-md-start">
+          <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/breast-cancer-logo-flyer-design-template-15e7eb8542754cc24e97fe333dc5123f_screen.jpg?ts=1632498400" alt="Logo">
+          <p class="mt-3">Your trusted partner in quick AI-driven breast cancer risk analysis.</p>
+        </div>
+        <div class="col-md-4 footer-links">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/predictdata">Predict</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+          <h5>Follow Us</h5>
+          <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom text-center pt-3">
+        <p>&copy; {{ current_year }} Breast Cancer AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script> AOS.init({ duration: 800, once: true }); </script>
 </body>
 </html>
