@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h3 class="text-center text-success">🧬 Breast Cancer Diagnosis Report</h3>
+
+            <p class="fs-5">Prediction: <strong>{{ result }}</strong></p>
+            <p class="fs-5">AI Estimated Risk: 
+                <strong class="{% if cancer_percent > 70 %}text-danger{% elif cancer_percent > 40 %}text-warning{% else %}text-success{% endif %}">
+                    {{ cancer_percent }}%
+                </strong> chance of malignancy
+            </p>
+
+            {% if result == 'Malignant' %}
+            <div class="alert alert-danger" role="alert">
+                ⚠️ High Risk: Immediate diagnosis and treatment are strongly recommended.
+            </div>
+            {% else %}
+            <div class="alert alert-success" role="alert">
+                ✅ Low Risk: No immediate signs of malignancy.
+            </div>
+            {% endif %}
+
+            <p><strong>Recommendations:</strong></p>
+            <ul>
+                {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+
+            {% if result == 'Malignant' %}
+            <p><strong>Nearby Hospitals:</strong></p>
+            <ul>
+                {% for hospital in hospitals %}
+                <li>
+                    <strong>{{ hospital.name }}</strong><br>
+                    Contact: {{ hospital.contact }}<br>
+                    Estimate: {{ hospital.estimate }}<br>
+                    <a href="{{ hospital.link }}" target="_blank">View on Map</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <p><strong>Estimated Treatment Cost:</strong> ₹1.5L–₹4L depending on stage & hospital.</p>
+            {% else %}
+            <p>Still, it's recommended to have routine screenings every 6–12 months.</p>
+            {% endif %}
+
+            <div class="text-center">
+                <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
