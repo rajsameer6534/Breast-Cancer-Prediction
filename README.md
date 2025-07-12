@@ -2,9 +2,11 @@
 
 A machine learning-based diagnostic system for early detection of breast cancer using clinical data. This project classifies tumors as benign or malignant with 95%+ accuracy, and includes a web-based prediction interface built using Flask.
 
-![Breast Cancer Prediction Screenshot](https://your-screenshot-link-if-any.png)
+![Breast Cancer Prediction Screenshot]
 
----
+
+---![FotoJet](https://github.com/user-attachments/assets/9989ffc4-b4a8-4e69-b0b3-c6441316572f)
+
 
 ## 🚀 Project Overview
 
